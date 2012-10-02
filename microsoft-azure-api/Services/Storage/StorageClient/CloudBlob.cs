@@ -1682,7 +1682,7 @@ namespace Microsoft.WindowsAzure.StorageClient
             snapshot = null;
             sasCreds = null;
 
-            var queryParameters = HttpUtility.ParseQueryString(query);
+            var queryParameters = Utilities.ParseQueryString(query);
 
             if (queryParameters.AllKeys.Contains(Constants.QueryConstants.Snapshot))
             {

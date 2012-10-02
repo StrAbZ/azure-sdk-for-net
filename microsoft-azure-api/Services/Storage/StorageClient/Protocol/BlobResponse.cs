@@ -111,7 +111,7 @@ namespace Microsoft.WindowsAzure.StorageClient.Protocol
 
             attributes.Uri = new Uri(response.ResponseUri.GetLeftPart(UriPartial.Path));
             
-            var queryParameters = HttpUtility.ParseQueryString(response.ResponseUri.Query);
+            var queryParameters = Utilities.ParseQueryString(response.ResponseUri.Query);
 
             DateTime snapshot;
             var snapshotString = queryParameters.Get(Constants.QueryConstants.Snapshot);

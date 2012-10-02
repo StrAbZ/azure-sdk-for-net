@@ -23,7 +23,7 @@ namespace Microsoft.WindowsAzure
     using System;
     using System.Collections.Specialized;
     using System.Net;
-    using System.Web;
+    using Microsoft.WindowsAzure.StorageClient;
     using Microsoft.WindowsAzure.StorageClient.Protocol;
 
     /// <summary>
@@ -49,7 +49,7 @@ namespace Microsoft.WindowsAzure
         /// <param name="token">A string token representing a shared access signature.</param>
         public StorageCredentialsSharedAccessSignature(string token)
         {
-            NameValueCollection parameters = HttpUtility.ParseQueryString(token);
+            NameValueCollection parameters = Utilities.ParseQueryString(token);
 
             for (int index = 0; index < parameters.Count; index++)
             {

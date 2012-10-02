@@ -230,7 +230,7 @@ namespace Microsoft.WindowsAzure.StorageClient.Protocol
 
             // Note that AbsolutePath starts with a '/'.
             canonicalizedResource.Append(address.AbsolutePath);
-            NameValueCollection queryVariables = HttpUtility.ParseQueryString(address.Query);
+            NameValueCollection queryVariables = Utilities.ParseQueryString(address.Query);
 
             // Add only comp for the old scheme
             string compQueryParameterValue = queryVariables["comp"];
@@ -262,7 +262,7 @@ namespace Microsoft.WindowsAzure.StorageClient.Protocol
             CanonicalizedString canonicalizedResource = new CanonicalizedString(resourcepath.ToString());
 
             // query parameters
-            NameValueCollection queryVariables = HttpUtility.ParseQueryString(address.Query);
+            NameValueCollection queryVariables = Utilities.ParseQueryString(address.Query);
             NameValueCollection lowercasedKeyNameValue = new NameValueCollection();
 
             foreach (string key in queryVariables.Keys)

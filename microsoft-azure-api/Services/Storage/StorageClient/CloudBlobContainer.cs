@@ -938,7 +938,7 @@ namespace Microsoft.WindowsAzure.StorageClient
 
             StorageCredentialsSharedAccessSignature sasCreds;
 
-            var queryParameters = HttpUtility.ParseQueryString(completeUri.Query);
+            var queryParameters = Utilities.ParseQueryString(completeUri.Query);
             SharedAccessSignatureHelper.ParseQuery(queryParameters, out sasCreds);
 
             if (existingClient != null)

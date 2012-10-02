@@ -25,6 +25,7 @@ namespace Microsoft.WindowsAzure.StorageClient
     using System.IO;
     using System.Linq;
     using System.Net;
+    using System.Text.RegularExpressions;
     using System.Xml;
     using System.Xml.Linq;
     using Protocol;
@@ -586,6 +587,33 @@ namespace Microsoft.WindowsAzure.StorageClient
             }
 
             return extendedError;
+        }
+
+        public static NameValueCollection ParseQueryString(string s)
+        {
+            NameValueCollection nvc = new NameValueCollection();
+
+            // Remove anything other than query string from url
+            if (s.Contains("?"))
+            {
+                s = s.Substring(s.IndexOf('?') + 1);
+            }
+
+            foreach (string vp in Regex.Split(s, "&"))
+            {
+                string[] singlePair = Regex.Split(vp, "=");
+                if (singlePair.Length == 2)
+                {
+                    nvc.Add(singlePair[0], singlePair[1]);
+                }
+                else
+                {
+                    // Only one key with no value specified in query string
+                    nvc.Add(singlePair[0], string.Empty);
+                }
+            }
+
+            return nvc;
         }
     }
 }
